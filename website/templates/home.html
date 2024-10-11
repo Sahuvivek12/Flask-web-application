@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center"> 
+    <div class="form-container card p-4 text-center">
+        <h1 class="mb-4 text-white">Welcome to Notes</h1> 
+        <a href="/create" class="btn btn-primary mb-3 active-button" style="width: 200px; height: 50px;">Create Note</a>
+        <a href="/view" class="btn btn-primary active-button" style="width: 200px; height: 50px;">View Notes</a>
+    </div>
+</div>
+{% endblock %}
