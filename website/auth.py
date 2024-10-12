@@ -43,7 +43,7 @@ def signup():
 
         if user:
             flash('This user already exists.', category='error')
-            return redirect(url_for('views.login'))
+            return redirect(url_for('auth.signup'))
 
         elif len(username) < 4:
             flash("Username must be longer than 4 characters.", category='error')

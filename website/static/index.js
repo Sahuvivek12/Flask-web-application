@@ -1,18 +1,19 @@
 function deleteNote(noteId) {
-    console.log("Attempting to delete note with ID:", noteId);  // Debug log
-    fetch('/delete-note', {
+    fetch(`/delete-note/${noteId}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'  // Set the correct content type
-        },
-        body: JSON.stringify({ noteId: noteId }),  // Send the noteId as JSON
-    }).then((res) => {
-        if (res.ok) {
-            window.location.href = "/";  // Redirect if successful
-        } else {
-            console.error("Failed to delete note:", res);  // Log error if not ok
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrf_token')
         }
-    }).catch((error) => {
-        console.error("Error occurred during fetch:", error);  // Catch any network errors
+    })
+    .then((response) => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('Error deleting note:', response.statusText);
+        }
+    })
+    .catch((error) => {
+        console.error('Fetch error:', error);
     });
 }
