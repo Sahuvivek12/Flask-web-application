@@ -1,5 +1,7 @@
 # Flask Web Application
 
+**Live Demo:** [www.note.infinityfreeapp.com](https://www.note.infinityfreeapp.com/login?next=%2F) 
+
 This is a simple web application built with Flask, a micro web framework for Python. It provides a clean and modern user interface for managing notes.
 
 ## Features
@@ -38,10 +40,11 @@ This is a simple web application built with Flask, a micro web framework for Pyt
 2. Sign up for a new account or log in if you already have one.
 3. Create, view, and delete notes.
 
+
 ## Screenshots
+
 <img width="1440" alt="Screenshot 2024-10-12 at 11 07 02 PM" src="https://github.com/user-attachments/assets/363f4da7-dc94-4dd4-a66c-4261b55b2558">
 <img width="1440" alt="Screenshot 2024-10-12 at 11 07 28 PM" src="https://github.com/user-attachments/assets/ef766766-0ca6-400c-802b-62584f020c0d">
-
 
 ## Contributing
 
@@ -49,9 +52,10 @@ Contributions are welcome! Please feel free to open an issue or submit a pull re
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). 
+This project is licensed under the [MIT License](LICENSE). 
 
 ## Contact
+
 For questions or suggestions, feel free to reach out:
 
 GitHub: [Sahuvivek12](https://github.com/Sahuvivek12)
