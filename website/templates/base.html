@@ -12,7 +12,7 @@
     body {
       background-color: white;
       font-family: "Inter", sans-serif;
-      background-image: url("https://images.hdqwalls.com/wallpapers/bthumb/dark-blur-abstract-j4.jpg");
+      background-image: url("https://images.unsplash.com/photo-1677158607710-3731af5a8c31?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
       background-size: cover;
     }
 
@@ -23,11 +23,11 @@
     }
 
     .form-container {
-      backdrop-filter: blur(5px);
-      background-color: rgba(20, 21, 24, 0.2);
+      backdrop-filter: blur(12px);
+      background-color: rgba(20, 21, 24, 0.05);
       border-radius: 12px;
       padding: 30px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.1);
       animation: fadeIn 0.5s ease;
       max-width: 400px;
@@ -49,22 +49,78 @@
       border: none;
       font-size: 1.2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-primary:hover {
       transform: scale(1.03);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     }
 
     .btn-primary:focus {
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
     }
 
+    .alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 20px 40px 20px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  display: none;
+  animation: slideIn 0.5s ease forwards;
+  max-width: 300px;
+}
+
+.alert-success {
+  border: 1px solid rgba(40, 167, 69, 0.4);
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  background-color: rgba(40, 167, 69, 0.05);
+}
+
+.alert-danger {
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+  background-color: rgba(220, 53, 69, 0.05);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.close {
+  color: white;
+  font-size: 1.2rem;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.alert.show {
+  display: block;
+}
+
+
     .nav-container {
-      backdrop-filter: blur(10px);
-      background-color: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.05);
       border-radius: 50px;
       padding: 10px 20px;
       margin-bottom: 20px;
@@ -75,7 +131,6 @@
       margin-left: auto;
       margin-right: auto;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      /* Added subtle border */
     }
 
     .nav-link {
@@ -104,13 +159,14 @@
       background-color: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 8px;
-      color: white;
+      color: white
     }
 
     .form-control:focus {
       background-color: rgba(255, 255, 255, 0.2);
       border-color: #007bff;
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      color: white
     }
 
     label {
@@ -137,13 +193,31 @@
   <title>{% block title %}Home{% endblock %}</title>
 </head>
 
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} show alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
 <body>
-  <div class="container mt-5">
-    <div class="nav-container">
+  <div class="nav-container">
+    {% if current_user.is_authenticated %}
       <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+      <a class="nav-link btn btn-danger" href="/logout" style="background-color: red; color: white; border-radius: 50px;">Logout</a>
+    {% else %}
       <a class="nav-link {% if request.path == '/login' %}active{% endif %}" href="/login">Login</a>
       <a class="nav-link {% if request.path == '/signup' %}active{% endif %}" href="/signup">Sign Up</a>
-    </div>
+    {% endif %}
+  </div>
+  
 
     <div class="d-flex justify-content-center align-items-center">
       <div class="form-container card p-4">
