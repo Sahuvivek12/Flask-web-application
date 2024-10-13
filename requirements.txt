@@ -5,3 +5,4 @@ Flask-Login
 Werkzeug
 Jinja2
 python-dotenv
+psycopg2-binary

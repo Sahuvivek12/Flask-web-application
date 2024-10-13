@@ -21,12 +21,16 @@ This is a simple web application built with Flask, a micro web framework for Pyt
 
 ## Technologies Used
 
-* Flask: Python web framework.
-* Bootstrap: Front-end framework for styling and responsiveness.
-* Jinja2: Templating engine for dynamic HTML generation.
-* HTML: Markup language for structuring the web pages.
-* CSS: Styling language for visual presentation.
-* JavaScript:  (Minimal use) For client-side interactions.
+* **Back-end:**
+    * Flask: Python web framework.
+    * **Supabase:** Serverless platform with PostgreSQL database.
+* **Front-end:**
+    * Bootstrap: Front-end framework for styling and responsiveness.
+    * Jinja2: Templating engine for dynamic HTML generation.
+    * HTML: Markup language for structuring the web pages.
+    * CSS: Styling language for visual presentation.
+    * JavaScript:  (Minimal use) For client-side interactions.
+
 
 ## Installation
 

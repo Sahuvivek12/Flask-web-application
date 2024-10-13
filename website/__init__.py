@@ -15,9 +15,10 @@ DB_NAME = "database.db"
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.getenv('key')
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     db.init_app(app)
     migrate.init_app(app, db)
+
 
 
     from website.views import views
@@ -28,7 +29,6 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from website.models import User, Note
-    create_database(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -40,12 +40,6 @@ def create_app():
 
     return app
 
-def create_database(app):
-    db_path = os.path.join(os.path.dirname(__file__), DB_NAME)
-    if not os.path.exists(db_path):
-        with app.app_context():
-            db.create_all()
-        print(f'Database Created!')
 
 
 
